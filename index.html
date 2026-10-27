@@ -19,10 +19,11 @@
       min-height: 100vh;
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       background-attachment: fixed;
     }
 
-    /* BẢNG MÀU CHỦ ĐỀ CHUẨN XÁC */
+    /* MÀU CHỦ ĐỀ */
     /* SÁNG */
     body.theme-ban-mai {
       background-color: #faf5ee; color: #1c1917;
@@ -113,15 +114,12 @@
       </div>
 
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- Nút Lọc Năm Thi -->
         <button onclick="toggleModal('yearModal')" title="Chọn năm thi" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="filter" class="w-4 h-4"></i>
         </button>
-        <!-- Nút Chia Sẻ -->
         <button onclick="shareLink()" title="Chia sẻ" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="share-2" class="w-4 h-4"></i>
         </button>
-        <!-- Nút Tùy Chỉnh Giao Diện -->
         <button onclick="toggleModal('themeModal')" title="Tùy chỉnh giao diện" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
         </button>
@@ -135,8 +133,6 @@
       
       <!-- Cột Trái -->
       <div class="lg:col-span-8 space-y-6">
-        
-        <!-- Môn thi & Đồng hồ -->
         <div>
           <div class="flex flex-wrap items-center gap-3 mb-2">
             <div class="w-7 h-7 rounded-full themed-badge flex items-center justify-center">
@@ -172,15 +168,15 @@
           </div>
         </div>
 
-        <!-- Trích dẫn Danh ngôn (Đổi ngẫu nhiên) -->
+        <!-- Trích dẫn -->
         <div class="border-l-4 border-accent-themed pl-4 py-1.5 transition-all">
-          <p id="quoteText" class="italic font-semibold text-sm">“Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ.”</p>
+          <p class="italic font-semibold text-sm">“Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ.”</p>
           <p class="text-xs text-muted-themed mt-1">
-            <span id="quoteAuthor" class="text-accent-themed font-medium">Eleanor Roosevelt</span> &nbsp;|&nbsp; <span id="quoteSub">The future belongs to those who believe in the beauty of their dreams</span>
+            <span class="text-accent-themed font-medium">Eleanor Roosevelt</span> &nbsp;|&nbsp; <span>The future belongs to those who believe in the beauty of their dreams</span>
           </p>
         </div>
 
-        <!-- Tiến trình năm học -->
+        <!-- Tiến trình -->
         <div class="themed-card rounded-2xl p-6 shadow-sm space-y-4">
           <div class="flex justify-between items-center">
             <span class="font-bold text-base">Tiến trình</span>
@@ -199,7 +195,7 @@
           </div>
           <div>
             <h4 class="font-bold text-sm">Đôi lời nhắn nhủ đến bạn</h4>
-            <p id="adviceText" class="text-xs text-muted-themed mt-1">Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.</p>
+            <p class="text-xs text-muted-themed mt-1">Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.</p>
           </div>
         </div>
 
@@ -213,9 +209,7 @@
             <h3 id="scheduleHeader" class="font-bold text-base">Lịch thi tổng quan 2027 (Dự kiến)</h3>
           </div>
 
-          <div class="space-y-3" id="examContainer">
-            <!-- Danh sách render qua JS để click chuyển môn -->
-          </div>
+          <div class="space-y-3" id="examContainer"></div>
         </div>
       </div>
 
@@ -238,23 +232,25 @@
     </div>
   </footer>
 
-  <!-- ==================== MODAL TÙY CHỈNH GIAO DIỆN ==================== -->
+  <!-- ==================== MODAL TÙY CHỈNH GIAO DIỆN (CHỦ ĐỀ | MÀU NHẤN | ẢNH NỀN) ==================== -->
   <div id="themeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-[#121826] text-slate-100 w-full max-w-lg rounded-3xl border border-slate-700/80 shadow-2xl p-6 relative">
+    <div class="bg-[#12141a] text-slate-100 w-full max-w-lg rounded-3xl border border-stone-800 shadow-2xl p-6 relative">
+      <!-- Close button -->
       <button onclick="toggleModal('themeModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <h3 class="text-lg font-bold mb-4">Tùy chỉnh giao diện</h3>
+      <h3 class="text-xl font-bold mb-4">Tùy chỉnh giao diện</h3>
 
-      <!-- Tabs -->
-      <div class="flex gap-2 p-1 bg-slate-900 rounded-xl mb-5 w-fit border border-slate-800">
-        <button onclick="switchTab('tab-themes')" id="btn-tab-themes" class="px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white">Chủ đề</button>
-        <button onclick="switchTab('tab-wallpaper')" id="btn-tab-wallpaper" class="px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white">Ảnh nền</button>
+      <!-- 3 Tab y hệt bản gốc -->
+      <div class="flex gap-2 p-1.5 bg-[#1a1e28] rounded-2xl mb-6 w-fit border border-stone-800">
+        <button onclick="switchTab('tab-themes')" id="btn-tab-themes" class="px-5 py-2 text-xs font-semibold rounded-xl text-slate-400 hover:text-white transition">Chủ đề</button>
+        <button onclick="switchTab('tab-accents')" id="btn-tab-accents" class="px-5 py-2 text-xs font-semibold rounded-xl text-slate-400 hover:text-white transition">Màu nhấn</button>
+        <button onclick="switchTab('tab-wallpaper')" id="btn-tab-wallpaper" class="px-5 py-2 text-xs font-semibold rounded-xl bg-[#283144] text-white transition">Ảnh nền</button>
       </div>
 
-      <!-- Tab Chủ Đề -->
-      <div id="tab-themes" class="space-y-4">
+      <!-- TAB 1: CHỦ ĐỀ -->
+      <div id="tab-themes" class="hidden space-y-4">
         <div>
           <div class="flex items-center gap-1.5 text-xs font-semibold text-amber-400 mb-2.5">
             <i data-lucide="sun" class="w-3.5 h-3.5"></i>
@@ -284,25 +280,45 @@
         </div>
       </div>
 
-      <!-- Tab Ảnh Nền -->
-      <div id="tab-wallpaper" class="hidden space-y-3">
-        <label class="text-xs text-slate-300 font-medium">Nhập đường link (URL) ảnh nền tùy thích:</label>
-        <input id="customBgInput" type="text" placeholder="https://example.com/wallpaper.jpg" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-blue-500">
-        <div class="flex gap-2">
-          <button onclick="applyCustomBg()" class="flex-1 py-2 rounded-xl bg-blue-600 text-xs font-semibold hover:bg-blue-500">Đặt hình nền</button>
-          <button onclick="clearCustomBg()" class="px-4 py-2 rounded-xl bg-slate-800 text-xs text-slate-400 hover:text-white">Xóa</button>
+      <!-- TAB 2: MÀU NHẤN -->
+      <div id="tab-accents" class="hidden space-y-3">
+        <label class="block text-xs font-semibold text-slate-300 mb-2">Chọn màu nhấn nổi bật:</label>
+        <div class="grid grid-cols-4 gap-3">
+          <button onclick="setCustomAccent('#3b82f6')" class="h-10 rounded-xl bg-blue-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#06b6d4')" class="h-10 rounded-xl bg-cyan-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#10b981')" class="h-10 rounded-xl bg-emerald-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#f59e0b')" class="h-10 rounded-xl bg-amber-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#f43f5e')" class="h-10 rounded-xl bg-rose-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#8b5cf6')" class="h-10 rounded-xl bg-purple-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#ec4899')" class="h-10 rounded-xl bg-pink-500 hover:scale-105 transition"></button>
+          <button onclick="setCustomAccent('#f97316')" class="h-10 rounded-xl bg-orange-500 hover:scale-105 transition"></button>
         </div>
       </div>
 
-      <button onclick="toggleModal('themeModal')" class="mt-6 w-full py-3 rounded-2xl bg-white text-slate-900 font-bold text-sm hover:opacity-90 transition">
-        Áp dụng chủ đề
-      </button>
+      <!-- TAB 3: ẢNH NỀN (CHỌN TỆP TRỰC TIẾP) -->
+      <div id="tab-wallpaper" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-stone-200 mb-2">Tải ảnh nền lên</label>
+          <div class="relative w-full rounded-2xl border border-stone-700 bg-[#161a24] p-3 flex items-center">
+            <input type="file" id="bgFileInput" accept="image/*" class="w-full text-xs text-stone-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-stone-700 file:text-white hover:file:bg-stone-600 cursor-pointer">
+          </div>
+        </div>
+
+        <button onclick="applyUploadedBg()" class="w-full py-3.5 rounded-2xl bg-stone-200 text-stone-900 font-bold text-sm hover:bg-white transition shadow">
+          Áp dụng ảnh nền
+        </button>
+
+        <button onclick="clearCustomBg()" class="w-full py-2.5 rounded-xl border border-stone-700 text-stone-400 text-xs hover:text-white transition">
+          Xóa ảnh nền đã cài
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- ==================== MODAL CHỌN NĂM THI ==================== -->
+  <!-- MODAL CHỌN NĂM THI -->
   <div id="yearModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-[#121826] text-slate-100 w-full max-w-sm rounded-3xl border border-slate-700 p-6 relative">
+    <div class="bg-[#12141a] text-slate-100 w-full max-w-sm rounded-3xl border border-stone-700 p-6 relative">
       <button onclick="toggleModal('yearModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
@@ -311,29 +327,29 @@
         <span>Chọn kỳ thi / Năm thi</span>
       </h3>
       <div class="space-y-2">
-        <button onclick="changeYear(2025)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+        <button onclick="changeYear(2025)" class="w-full p-3 rounded-xl bg-stone-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
           <span>Kỳ thi THPT Quốc Gia 2025</span>
-          <span class="text-slate-400 text-[11px]">26/06/2025</span>
+          <span class="text-stone-400 text-[11px]">26/06/2025</span>
         </button>
-        <button onclick="changeYear(2026)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+        <button onclick="changeYear(2026)" class="w-full p-3 rounded-xl bg-stone-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
           <span>Kỳ thi THPT Quốc Gia 2026</span>
-          <span class="text-slate-400 text-[11px]">12/06/2026</span>
+          <span class="text-stone-400 text-[11px]">12/06/2026</span>
         </button>
         <button onclick="changeYear(2027)" class="w-full p-3 rounded-xl bg-blue-600/20 border border-blue-500/60 text-left text-xs font-semibold transition flex justify-between">
           <span class="text-blue-400">Kỳ thi THPT Quốc Gia 2027</span>
           <span class="text-blue-300 text-[11px]">11/06/2027</span>
         </button>
-        <button onclick="changeYear(2028)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+        <button onclick="changeYear(2028)" class="w-full p-3 rounded-xl bg-stone-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
           <span>Kỳ thi THPT Quốc Gia 2028</span>
-          <span class="text-slate-400 text-[11px]">10/06/2028</span>
+          <span class="text-stone-400 text-[11px]">10/06/2028</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== MODAL ỦNG HỘ (DONATE) ==================== -->
+  <!-- MODAL ỦNG HỘ (DONATE) -->
   <div id="donateModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-[#121826] text-slate-100 w-full max-w-sm rounded-3xl border border-slate-700 p-6 relative text-center">
+    <div class="bg-[#12141a] text-slate-100 w-full max-w-sm rounded-3xl border border-stone-700 p-6 relative text-center">
       <button onclick="toggleModal('donateModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
@@ -341,38 +357,23 @@
         <i data-lucide="heart" class="w-6 h-6"></i>
       </div>
       <h3 class="text-base font-bold mb-1">Ủng hộ tác giả</h3>
-      <p class="text-xs text-slate-400 mb-4">Cảm ơn bạn đã luôn đồng hành và ủng hộ trang web!</p>
+      <p class="text-xs text-stone-400 mb-4">Cảm ơn bạn đã luôn đồng hành cùng trang web!</p>
       <div class="p-3 bg-white rounded-2xl inline-block mb-3">
-        <!-- QR placeholder -->
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=CamOnBanDaUngHo" alt="QR Donate" class="w-36 h-36 mx-auto rounded-lg">
       </div>
-      <p class="text-[11px] text-slate-400 font-mono">Chúc bạn có một kỳ thi thật thành công rực rỡ! ✨</p>
+      <p class="text-[11px] text-stone-400 font-mono">Chúc bạn có một kỳ thi thật thành công! ✨</p>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION -->
+  <!-- TOAST -->
   <div id="toast" class="fixed bottom-6 right-6 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-medium shadow-lg hidden flex items-center gap-2 z-50">
     <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-    <span id="toastMsg">Đã sao chép liên kết vào bộ nhớ tạm!</span>
+    <span id="toastMsg">Đã sao chép liên kết!</span>
   </div>
 
   <script>
     lucide.createIcons();
 
-    // Dữ liệu danh ngôn & nhắn nhủ
-    const quotes = [
-      { text: "Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ.", author: "Eleanor Roosevelt", sub: "The future belongs to those who believe in the beauty of their dreams" },
-      { text: "Thành công không phải là chìa khóa của hạnh phúc. Hạnh phúc mới là chìa khóa của thành công.", author: "Albert Schweitzer", sub: "Success is not the key to happiness. Happiness is the key to success." },
-      { text: "Điều kỳ diệu chỉ xảy ra khi bạn nỗ lực không ngừng nghỉ.", author: "Khuyết danh", sub: "Miracles happen to those who never give up." }
-    ];
-
-    const advices = [
-      "Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.",
-      "Uống đủ nước và ngủ đủ 7-8 tiếng mỗi ngày để não bộ tập trung nhất.",
-      "Luyện đề thường xuyên nhưng đừng quên tổng ôn lại các kiến thức cơ bản."
-    ];
-
-    // Năm thi & Môn thi
     let selectedYear = 2027;
     let selectedExamIndex = 0;
 
@@ -473,24 +474,18 @@
       document.getElementById('progress-desc').innerText = `${pStr}% thời gian đã qua từ đầu năm học (05/09/${selectedYear - 1}) đến kỳ thi THPT ${selectedYear}`;
     }
 
-    // Modal toggles
     function toggleModal(id) {
-      const el = document.getElementById(id);
-      el.classList.toggle('hidden');
+      document.getElementById(id).classList.toggle('hidden');
     }
 
     function switchTab(tabId) {
-      document.getElementById('tab-themes').classList.add('hidden');
-      document.getElementById('tab-wallpaper').classList.add('hidden');
-      document.getElementById('btn-tab-themes').className = 'px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white';
-      document.getElementById('btn-tab-wallpaper').className = 'px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white';
+      ['tab-themes', 'tab-accents', 'tab-wallpaper'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+        document.getElementById(`btn-${id}`).className = 'px-5 py-2 text-xs font-semibold rounded-xl text-slate-400 hover:text-white transition';
+      });
 
       document.getElementById(tabId).classList.remove('hidden');
-      if (tabId === 'tab-themes') {
-        document.getElementById('btn-tab-themes').className = 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white';
-      } else {
-        document.getElementById('btn-tab-wallpaper').className = 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white';
-      }
+      document.getElementById(`btn-${tabId}`).className = 'px-5 py-2 text-xs font-semibold rounded-xl bg-[#283144] text-white transition';
     }
 
     function selectTheme(theme) {
@@ -499,19 +494,62 @@
       lucide.createIcons();
     }
 
-    function applyCustomBg() {
-      const url = document.getElementById('customBgInput').value;
-      if (url) {
-        document.body.style.backgroundImage = `url('${url}')`;
-        localStorage.setItem('site_bg', url);
-        toggleModal('themeModal');
+    function setCustomAccent(color) {
+      document.body.style.setProperty('--accent', color);
+      localStorage.setItem('site_accent', color);
+    }
+
+    // XỬ LÝ TẢI ẢNH NỀN TỪ MÁY TỰ ĐỘNG NÉN ĐỂ LƯU VĨNH VIỄN
+    function applyUploadedBg() {
+      const fileInput = document.getElementById('bgFileInput');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("Vui lòng chọn 1 tệp ảnh trước khi bấm áp dụng!");
+        return;
       }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = function() {
+          // Nén nhẹ để tránh tràn bộ nhớ trình duyệt
+          const canvas = document.createElement('canvas');
+          const maxDim = 1920;
+          let width = img.width;
+          let height = img.height;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const base64Bg = canvas.toDataURL('image/jpeg', 0.85);
+          document.body.style.backgroundImage = `url('${base64Bg}')`;
+          try {
+            localStorage.setItem('site_user_bg', base64Bg);
+          } catch(err) {
+            console.warn("Ảnh quá lớn để lưu trữ dài hạn.");
+          }
+          toggleModal('themeModal');
+        };
+      };
+      reader.readAsDataURL(file);
     }
 
     function clearCustomBg() {
       document.body.style.backgroundImage = 'none';
-      document.getElementById('customBgInput').value = '';
-      localStorage.removeItem('site_bg');
+      localStorage.removeItem('site_user_bg');
+      document.getElementById('bgFileInput').value = '';
+      toggleModal('themeModal');
     }
 
     function shareLink() {
@@ -521,18 +559,21 @@
       setTimeout(() => toast.classList.add('hidden'), 2500);
     }
 
-    // Khởi tạo
+    // Khởi tạo trang
     renderExamList();
     selectExam(0);
     setInterval(updateCountdown, 1000);
 
-    // Load theme & hình nền đã lưu
+    // Tải lại cài đặt người dùng đã lưu
     const savedTheme = localStorage.getItem('site_theme') || 'theme-dem-tinh-lang';
     selectTheme(savedTheme);
-    const savedBg = localStorage.getItem('site_bg');
-    if (savedBg) {
-      document.body.style.backgroundImage = `url('${savedBg}')`;
-      document.getElementById('customBgInput').value = savedBg;
+
+    const savedAccent = localStorage.getItem('site_accent');
+    if (savedAccent) setCustomAccent(savedAccent);
+
+    const savedUserBg = localStorage.getItem('site_user_bg');
+    if (savedUserBg) {
+      document.body.style.backgroundImage = `url('${savedUserBg}')`;
     }
   </script>
 </body>
