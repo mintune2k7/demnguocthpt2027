@@ -3,49 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2027</title>
-  <!-- Google Fonts: Inter & Be Vietnam Pro -->
+  <title>Đếm Ngược Ngày Thi Tốt Nghiệp THPT</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
       font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
-      background-color: #fbf7ee;
-      background-image: 
-        radial-gradient(at 10% 20%, rgba(254, 243, 199, 0.5) 0px, transparent 50%),
-        radial-gradient(at 90% 80%, rgba(254, 240, 138, 0.3) 0px, transparent 50%);
+      transition: background-color 0.3s ease, color 0.3s ease;
       min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
+
+    /* BẢNG MÀU CHỦ ĐỀ CHUẨN XÁC */
+    /* SÁNG */
+    body.theme-ban-mai {
+      background-color: #faf5ee; color: #1c1917;
+      --card-bg: rgba(255, 255, 255, 0.82); --card-border: rgba(230, 224, 210, 0.9);
+      --card-active: #fffaf0; --text-muted: #78716c; --accent: #d97706; --badge-bg: #fef3c7; --badge-text: #b45309;
+    }
+    body.theme-troi-xanh {
+      background-color: #f0f7ff; color: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.85); --card-border: rgba(210, 230, 250, 0.9);
+      --card-active: #f0f9ff; --text-muted: #64748b; --accent: #0284c7; --badge-bg: #e0f2fe; --badge-text: #0369a1;
+    }
+    body.theme-la-xanh {
+      background-color: #f2f9f3; color: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.85); --card-border: rgba(215, 235, 220, 0.9);
+      --card-active: #f0fdf4; --text-muted: #64748b; --accent: #16a34a; --badge-bg: #dcfce7; --badge-text: #15803d;
+    }
+    body.theme-oai-huong {
+      background-color: #f8f5ff; color: #1e1b4b;
+      --card-bg: rgba(255, 255, 255, 0.85); --card-border: rgba(230, 220, 250, 0.9);
+      --card-active: #faf5ff; --text-muted: #6b7280; --accent: #7c3aed; --badge-bg: #f3e8ff; --badge-text: #6d28d9;
+    }
+    body.theme-dao-phan {
+      background-color: #fff4f4; color: #1f2937;
+      --card-bg: rgba(255, 255, 255, 0.85); --card-border: rgba(254, 215, 215, 0.9);
+      --card-active: #fff1f2; --text-muted: #6b7280; --accent: #e11d48; --badge-bg: #ffe4e6; --badge-text: #be123c;
+    }
+    body.theme-trang-tinh {
+      background-color: #ffffff; color: #0f172a;
+      --card-bg: rgba(248, 250, 252, 0.9); --card-border: rgba(226, 232, 240, 1);
+      --card-active: #f1f5f9; --text-muted: #64748b; --accent: #334155; --badge-bg: #e2e8f0; --badge-text: #1e293b;
+    }
+
+    /* TỐI */
+    body.theme-dem-tinh-lang {
+      background-color: #0b0f19; color: #f1f5f9;
+      --card-bg: rgba(17, 24, 39, 0.75); --card-border: rgba(36, 48, 74, 0.75);
+      --card-active: rgba(26, 37, 61, 0.9); --text-muted: #8899b5; --accent: #3b82f6; --badge-bg: rgba(59, 130, 246, 0.2); --badge-text: #60a5fa;
+    }
+    body.theme-dai-duong {
+      background-color: #061322; color: #f0fdfa;
+      --card-bg: rgba(10, 28, 48, 0.75); --card-border: rgba(19, 53, 88, 0.75);
+      --card-active: rgba(16, 45, 77, 0.9); --text-muted: #7ba2c5; --accent: #06b6d4; --badge-bg: rgba(6, 182, 212, 0.2); --badge-text: #22d3ee;
+    }
+    body.theme-rung-dem {
+      background-color: #07150e; color: #f0fdf4;
+      --card-bg: rgba(12, 33, 23, 0.75); --card-border: rgba(24, 61, 44, 0.75);
+      --card-active: rgba(20, 52, 37, 0.9); --text-muted: #7ca893; --accent: #10b981; --badge-bg: rgba(16, 185, 129, 0.2); --badge-text: #34d399;
+    }
+    body.theme-than-hong {
+      background-color: #170f0b; color: #fff7ed;
+      --card-bg: rgba(36, 21, 16, 0.75); --card-border: rgba(69, 39, 29, 0.75);
+      --card-active: rgba(55, 30, 22, 0.9); --text-muted: #b38c7d; --accent: #f97316; --badge-bg: rgba(249, 115, 22, 0.2); --badge-text: #fb923c;
+    }
+
+    .themed-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      transition: all 0.2s ease;
+    }
+    .themed-card-active {
+      background: var(--card-active) !important;
+      border-color: var(--accent) !important;
+    }
+    .themed-badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+    }
+    .text-muted-themed { color: var(--text-muted); }
+    .text-accent-themed { color: var(--accent); }
+    .bg-accent-themed { background-color: var(--accent); }
+    .border-accent-themed { border-color: var(--accent); }
   </style>
 </head>
-<body class="text-stone-800 flex flex-col justify-between min-h-screen">
+<body class="theme-dem-tinh-lang flex flex-col justify-between min-h-screen">
 
   <!-- Header -->
-  <header class="w-full bg-white/70 backdrop-blur-md border-b border-amber-100/60 sticky top-0 z-50">
+  <header class="w-full themed-card !rounded-none border-t-0 border-x-0 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-amber-600 shadow-sm">
+        <div class="w-11 h-11 rounded-2xl themed-badge flex items-center justify-center shadow-sm">
           <i data-lucide="calendar" class="w-5 h-5"></i>
         </div>
         <div>
-          <h1 class="font-bold text-lg text-stone-900 leading-tight">Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2027</h1>
-          <p class="text-xs text-stone-500 font-medium mt-0.5">Trang web đếm ngược ngày thi THPT 2027</p>
+          <h1 id="siteTitle" class="font-bold text-base sm:text-lg leading-tight">Đếm Ngược Ngày Thi Tốt Nghiệp THPT 2027</h1>
+          <p class="text-xs text-muted-themed font-medium mt-0.5">Trang web đếm ngược ngày thi THPT quốc gia</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button class="w-10 h-10 rounded-xl hover:bg-stone-100 flex items-center justify-center text-stone-600 transition">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Nút Lọc Năm Thi -->
+        <button onclick="toggleModal('yearModal')" title="Chọn năm thi" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="filter" class="w-4 h-4"></i>
         </button>
-        <button class="w-10 h-10 rounded-xl hover:bg-stone-100 flex items-center justify-center text-stone-600 transition">
+        <!-- Nút Chia Sẻ -->
+        <button onclick="shareLink()" title="Chia sẻ" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="share-2" class="w-4 h-4"></i>
         </button>
-        <button class="w-10 h-10 rounded-xl hover:bg-stone-100 flex items-center justify-center text-stone-600 transition">
+        <!-- Nút Tùy Chỉnh Giao Diện -->
+        <button onclick="toggleModal('themeModal')" title="Tùy chỉnh giao diện" class="w-10 h-10 rounded-xl themed-card flex items-center justify-center text-muted-themed hover:text-white transition">
           <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
         </button>
       </div>
@@ -56,127 +133,88 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       
-      <!-- Cột Trái (Chính) -->
+      <!-- Cột Trái -->
       <div class="lg:col-span-8 space-y-6">
         
-        <!-- Section: Countdown -->
+        <!-- Môn thi & Đồng hồ -->
         <div>
-          <!-- Môn thi tiếp theo Tag -->
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <div class="w-7 h-7 rounded-full themed-badge flex items-center justify-center">
               <i data-lucide="clock" class="w-4 h-4"></i>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-xs uppercase font-semibold text-stone-500 tracking-wider">MÔN THI TIẾP THEO</span>
-              <span class="text-stone-900 font-bold text-lg">Ngữ văn</span>
-              <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">11/6/2027 – 07:30</span>
+              <span class="text-xs uppercase font-semibold text-muted-themed tracking-wider">MÔN THI TIẾP THEO</span>
+              <span id="targetExamTitle" class="font-bold text-lg">Ngữ văn</span>
+              <span id="targetExamBadge" class="themed-badge text-xs px-2.5 py-0.5 rounded-full font-semibold">11/6/2027 – 07:30</span>
             </div>
           </div>
           
-          <p class="text-sm text-stone-500 mb-4 font-medium">Thời gian còn lại đến môn thi Ngữ văn</p>
+          <p id="targetExamSub" class="text-sm text-muted-themed mb-4 font-medium">Thời gian còn lại đến môn thi Ngữ văn</p>
 
           <!-- 4 Card Đếm Ngược -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-stone-200/60 shadow-sm flex flex-col justify-between h-36">
-              <span id="days" class="text-5xl font-black text-stone-900 tracking-tight">--</span>
-              <span class="text-xs font-bold uppercase tracking-wider text-stone-500">NGÀY</span>
+            <div class="themed-card rounded-2xl p-6 flex flex-col justify-between h-36 shadow-sm">
+              <span id="days" class="text-5xl font-black tracking-tight">--</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-muted-themed">NGÀY</span>
             </div>
-            <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-stone-200/60 shadow-sm flex flex-col justify-between h-36">
-              <span id="hours" class="text-5xl font-black text-stone-900 tracking-tight">--</span>
-              <span class="text-xs font-bold uppercase tracking-wider text-stone-500">GIỜ</span>
+            <div class="themed-card rounded-2xl p-6 flex flex-col justify-between h-36 shadow-sm">
+              <span id="hours" class="text-5xl font-black tracking-tight">--</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-muted-themed">GIỜ</span>
             </div>
-            <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-stone-200/60 shadow-sm flex flex-col justify-between h-36">
-              <span id="minutes" class="text-5xl font-black text-stone-900 tracking-tight">--</span>
-              <span class="text-xs font-bold uppercase tracking-wider text-stone-500">PHÚT</span>
+            <div class="themed-card rounded-2xl p-6 flex flex-col justify-between h-36 shadow-sm">
+              <span id="minutes" class="text-5xl font-black tracking-tight">--</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-muted-themed">PHÚT</span>
             </div>
-            <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-stone-200/60 shadow-sm flex flex-col justify-between h-36">
-              <span id="seconds" class="text-5xl font-black text-stone-900 tracking-tight">--</span>
-              <span class="text-xs font-bold uppercase tracking-wider text-stone-500">GIÂY</span>
+            <div class="themed-card rounded-2xl p-6 flex flex-col justify-between h-36 shadow-sm">
+              <span id="seconds" class="text-5xl font-black tracking-tight">--</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-muted-themed">GIÂY</span>
             </div>
           </div>
         </div>
 
-        <!-- Trích dẫn / Quote -->
-        <div class="border-l-4 border-amber-400 pl-4 py-1">
-          <p class="italic text-stone-700 font-semibold text-sm">“Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ”</p>
-          <p class="text-xs text-stone-400 mt-1">
-            <span class="text-amber-800 font-medium">Eleanor Roosevelt</span> &nbsp;|&nbsp; The future belongs to those who believe in the beauty of their dreams
+        <!-- Trích dẫn Danh ngôn (Đổi ngẫu nhiên) -->
+        <div class="border-l-4 border-accent-themed pl-4 py-1.5 transition-all">
+          <p id="quoteText" class="italic font-semibold text-sm">“Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ.”</p>
+          <p class="text-xs text-muted-themed mt-1">
+            <span id="quoteAuthor" class="text-accent-themed font-medium">Eleanor Roosevelt</span> &nbsp;|&nbsp; <span id="quoteSub">The future belongs to those who believe in the beauty of their dreams</span>
           </p>
         </div>
 
-        <!-- Tiến trình (Progress Card) -->
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-stone-200/60 shadow-sm space-y-4">
+        <!-- Tiến trình năm học -->
+        <div class="themed-card rounded-2xl p-6 shadow-sm space-y-4">
           <div class="flex justify-between items-center">
-            <span class="font-bold text-stone-800 text-base">Tiến trình</span>
-            <span id="progress-percent" class="font-bold text-amber-700 text-base">0%</span>
+            <span class="font-bold text-base">Tiến trình</span>
+            <span id="progress-percent" class="font-bold text-base text-accent-themed">0%</span>
           </div>
-          <!-- Progress bar -->
-          <div class="w-full bg-stone-100 rounded-full h-3 overflow-hidden p-0.5 border border-stone-200/50">
-            <div id="progress-bar" class="bg-amber-600 h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+          <div class="w-full bg-slate-800/40 rounded-full h-3 overflow-hidden p-0.5 border border-slate-700/40">
+            <div id="progress-bar" class="bg-accent-themed h-full rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
           </div>
-          <p id="progress-desc" class="text-xs text-stone-400 font-medium">Đang tính toán tiến trình từ đầu năm học...</p>
+          <p id="progress-desc" class="text-xs text-muted-themed font-medium">Đang tính toán tiến trình...</p>
         </div>
 
         <!-- Đôi lời nhắn nhủ -->
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-5 border border-stone-200/60 shadow-sm flex items-start gap-4">
-          <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 flex-shrink-0 border border-amber-200/50">
+        <div class="themed-card rounded-2xl p-5 shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl themed-badge flex items-center justify-center flex-shrink-0">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
           </div>
           <div>
-            <h4 class="font-bold text-stone-800 text-sm">Đôi lời nhắn nhủ đến bạn</h4>
-            <p class="text-xs text-stone-600 mt-1">Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.</p>
+            <h4 class="font-bold text-sm">Đôi lời nhắn nhủ đến bạn</h4>
+            <p id="adviceText" class="text-xs text-muted-themed mt-1">Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.</p>
           </div>
         </div>
 
       </div>
 
-      <!-- Cột Phải: Lịch thi tổng quan -->
+      <!-- Cột Phải: Lịch thi -->
       <div class="lg:col-span-4">
-        <div class="bg-white/80 backdrop-blur rounded-3xl p-6 border border-stone-200/60 shadow-sm space-y-4">
+        <div class="themed-card rounded-3xl p-6 shadow-sm space-y-4">
           <div class="flex items-center gap-2 mb-2">
-            <i data-lucide="calendar" class="w-5 h-5 text-amber-600"></i>
-            <h3 class="font-bold text-stone-900 text-base">Lịch thi tổng quan 2027 (Dự kiến)</h3>
+            <i data-lucide="calendar" class="w-5 h-5 text-accent-themed"></i>
+            <h3 id="scheduleHeader" class="font-bold text-base">Lịch thi tổng quan 2027 (Dự kiến)</h3>
           </div>
 
-          <div class="space-y-3">
-            <!-- Môn 1 (Ngữ văn - Đang chọn) -->
-            <div class="rounded-2xl p-3.5 bg-amber-50/70 border border-amber-200/80 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="text-2xl">📝</div>
-                <div>
-                  <h5 class="font-bold text-stone-900 text-sm">Ngữ văn</h5>
-                  <p class="text-[11px] text-stone-500 font-medium">11/6/2027 &nbsp;|&nbsp; 07:30 &nbsp;|&nbsp; 120 phút</p>
-                </div>
-              </div>
-              <span class="bg-amber-200/70 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full">Đang đếm ngược</span>
-            </div>
-
-            <!-- Môn 2 (Toán) -->
-            <div class="rounded-2xl p-3.5 bg-stone-50/60 border border-stone-200/60 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">12<br>34</div>
-              <div>
-                <h5 class="font-bold text-stone-800 text-sm">Toán</h5>
-                <p class="text-[11px] text-stone-500 font-medium">11/6/2027 &nbsp;|&nbsp; 14:20 &nbsp;|&nbsp; 90 phút</p>
-              </div>
-            </div>
-
-            <!-- Môn 3 (Tự chọn 1) -->
-            <div class="rounded-2xl p-3.5 bg-stone-50/60 border border-stone-200/60 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm">1</div>
-              <div>
-                <h5 class="font-bold text-stone-800 text-sm">Bài thi Tự chọn môn thứ nhất</h5>
-                <p class="text-[11px] text-stone-500 font-medium">12/6/2027 &nbsp;|&nbsp; 07:30 &nbsp;|&nbsp; 50 phút</p>
-              </div>
-            </div>
-
-            <!-- Môn 4 (Tự chọn 2) -->
-            <div class="rounded-2xl p-3.5 bg-stone-50/60 border border-stone-200/60 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm">2</div>
-              <div>
-                <h5 class="font-bold text-stone-800 text-sm">Bài thi Tự chọn môn thứ hai</h5>
-                <p class="text-[11px] text-stone-500 font-medium">12/6/2027 &nbsp;|&nbsp; 08:35 &nbsp;|&nbsp; 50 phút</p>
-              </div>
-            </div>
+          <div class="space-y-3" id="examContainer">
+            <!-- Danh sách render qua JS để click chuyển môn -->
           </div>
         </div>
       </div>
@@ -185,35 +223,232 @@
   </main>
 
   <!-- Footer -->
-  <footer class="w-full border-t border-amber-100/60 bg-white/40 mt-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-2">
+  <footer class="w-full themed-card !rounded-none border-b-0 border-x-0 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-themed gap-2">
       <p class="font-medium">@2027 - @phonghoa2309</p>
       <div class="flex items-center gap-4">
-        <a href="#" class="flex items-center gap-1 hover:text-stone-800 font-medium transition">
-          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i>
+        <button onclick="toggleModal('donateModal')" class="flex items-center gap-1 hover:text-white font-medium transition text-rose-500">
+          <i data-lucide="heart" class="w-3.5 h-3.5"></i>
           <span>Ủng hộ</span>
-        </a>
-        <a href="#" class="p-1.5 rounded-full hover:bg-stone-200/60 text-stone-600 transition">
+        </button>
+        <a href="https://github.com/mintune2k7/demnguocthpt2027" target="_blank" class="p-1.5 rounded-full hover:bg-white/10 transition">
           <i data-lucide="github" class="w-4 h-4"></i>
         </a>
       </div>
     </div>
   </footer>
 
+  <!-- ==================== MODAL TÙY CHỈNH GIAO DIỆN ==================== -->
+  <div id="themeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-[#121826] text-slate-100 w-full max-w-lg rounded-3xl border border-slate-700/80 shadow-2xl p-6 relative">
+      <button onclick="toggleModal('themeModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="text-lg font-bold mb-4">Tùy chỉnh giao diện</h3>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 p-1 bg-slate-900 rounded-xl mb-5 w-fit border border-slate-800">
+        <button onclick="switchTab('tab-themes')" id="btn-tab-themes" class="px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white">Chủ đề</button>
+        <button onclick="switchTab('tab-wallpaper')" id="btn-tab-wallpaper" class="px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white">Ảnh nền</button>
+      </div>
+
+      <!-- Tab Chủ Đề -->
+      <div id="tab-themes" class="space-y-4">
+        <div>
+          <div class="flex items-center gap-1.5 text-xs font-semibold text-amber-400 mb-2.5">
+            <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+            <span>Chủ đề sáng</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2.5">
+            <button onclick="selectTheme('theme-ban-mai')" class="p-3 rounded-xl bg-[#faf5ee] text-stone-900 text-xs font-medium border border-amber-200 hover:scale-95 transition">Ban Mai Ấm Áp</button>
+            <button onclick="selectTheme('theme-troi-xanh')" class="p-3 rounded-xl bg-[#f0f7ff] text-slate-900 text-xs font-medium border border-sky-200 hover:scale-95 transition">Trời Trong Xanh</button>
+            <button onclick="selectTheme('theme-la-xanh')" class="p-3 rounded-xl bg-[#f2f9f3] text-slate-900 text-xs font-medium border border-emerald-200 hover:scale-95 transition">Lá Xanh Nhẹ</button>
+            <button onclick="selectTheme('theme-oai-huong')" class="p-3 rounded-xl bg-[#f8f5ff] text-slate-900 text-xs font-medium border border-purple-200 hover:scale-95 transition">Oải Hương Nhẹ</button>
+            <button onclick="selectTheme('theme-dao-phan')" class="p-3 rounded-xl bg-[#fff4f4] text-slate-900 text-xs font-medium border border-rose-200 hover:scale-95 transition">Đào Phấn</button>
+            <button onclick="selectTheme('theme-trang-tinh')" class="p-3 rounded-xl bg-[#ffffff] text-slate-900 text-xs font-medium border border-slate-300 hover:scale-95 transition">Trắng Tinh Khiết</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-400 mb-2.5">
+            <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+            <span>Chủ đề tối</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2.5">
+            <button onclick="selectTheme('theme-dem-tinh-lang')" class="p-3 rounded-xl bg-[#0b0f19] text-white text-xs font-medium border border-blue-500/80 hover:scale-95 transition">Đêm Tĩnh Lặng</button>
+            <button onclick="selectTheme('theme-dai-duong')" class="p-3 rounded-xl bg-[#061322] text-white text-xs font-medium border border-cyan-800 hover:scale-95 transition">Đại Dương Sâu</button>
+            <button onclick="selectTheme('theme-rung-dem')" class="p-3 rounded-xl bg-[#07150e] text-white text-xs font-medium border border-emerald-900 hover:scale-95 transition">Rừng Đêm</button>
+            <button onclick="selectTheme('theme-than-hong')" class="p-3 rounded-xl bg-[#170f0b] text-white text-xs font-medium border border-orange-950 hover:scale-95 transition">Than Hồng Ấm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Ảnh Nền -->
+      <div id="tab-wallpaper" class="hidden space-y-3">
+        <label class="text-xs text-slate-300 font-medium">Nhập đường link (URL) ảnh nền tùy thích:</label>
+        <input id="customBgInput" type="text" placeholder="https://example.com/wallpaper.jpg" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-blue-500">
+        <div class="flex gap-2">
+          <button onclick="applyCustomBg()" class="flex-1 py-2 rounded-xl bg-blue-600 text-xs font-semibold hover:bg-blue-500">Đặt hình nền</button>
+          <button onclick="clearCustomBg()" class="px-4 py-2 rounded-xl bg-slate-800 text-xs text-slate-400 hover:text-white">Xóa</button>
+        </div>
+      </div>
+
+      <button onclick="toggleModal('themeModal')" class="mt-6 w-full py-3 rounded-2xl bg-white text-slate-900 font-bold text-sm hover:opacity-90 transition">
+        Áp dụng chủ đề
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL CHỌN NĂM THI ==================== -->
+  <div id="yearModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-[#121826] text-slate-100 w-full max-w-sm rounded-3xl border border-slate-700 p-6 relative">
+      <button onclick="toggleModal('yearModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 class="text-base font-bold mb-4 flex items-center gap-2">
+        <i data-lucide="filter" class="w-4 h-4 text-blue-400"></i>
+        <span>Chọn kỳ thi / Năm thi</span>
+      </h3>
+      <div class="space-y-2">
+        <button onclick="changeYear(2025)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+          <span>Kỳ thi THPT Quốc Gia 2025</span>
+          <span class="text-slate-400 text-[11px]">26/06/2025</span>
+        </button>
+        <button onclick="changeYear(2026)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+          <span>Kỳ thi THPT Quốc Gia 2026</span>
+          <span class="text-slate-400 text-[11px]">12/06/2026</span>
+        </button>
+        <button onclick="changeYear(2027)" class="w-full p-3 rounded-xl bg-blue-600/20 border border-blue-500/60 text-left text-xs font-semibold transition flex justify-between">
+          <span class="text-blue-400">Kỳ thi THPT Quốc Gia 2027</span>
+          <span class="text-blue-300 text-[11px]">11/06/2027</span>
+        </button>
+        <button onclick="changeYear(2028)" class="w-full p-3 rounded-xl bg-slate-800 hover:bg-blue-600/30 text-left text-xs font-semibold transition flex justify-between">
+          <span>Kỳ thi THPT Quốc Gia 2028</span>
+          <span class="text-slate-400 text-[11px]">10/06/2028</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL ỦNG HỘ (DONATE) ==================== -->
+  <div id="donateModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-[#121826] text-slate-100 w-full max-w-sm rounded-3xl border border-slate-700 p-6 relative text-center">
+      <button onclick="toggleModal('donateModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="heart" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-base font-bold mb-1">Ủng hộ tác giả</h3>
+      <p class="text-xs text-slate-400 mb-4">Cảm ơn bạn đã luôn đồng hành và ủng hộ trang web!</p>
+      <div class="p-3 bg-white rounded-2xl inline-block mb-3">
+        <!-- QR placeholder -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=CamOnBanDaUngHo" alt="QR Donate" class="w-36 h-36 mx-auto rounded-lg">
+      </div>
+      <p class="text-[11px] text-slate-400 font-mono">Chúc bạn có một kỳ thi thật thành công rực rỡ! ✨</p>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-medium shadow-lg hidden flex items-center gap-2 z-50">
+    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+    <span id="toastMsg">Đã sao chép liên kết vào bộ nhớ tạm!</span>
+  </div>
+
   <script>
-    // Khởi tạo icon Lucide
     lucide.createIcons();
 
-    // Mốc thời gian thi (07:30 ngày 11/06/2027)
-    const targetDate = new Date('2027-06-11T07:30:00').getTime();
-    // Mốc đầu năm học (05/09/2026)
-    const startDate = new Date('2026-09-05T00:00:00').getTime();
+    // Dữ liệu danh ngôn & nhắn nhủ
+    const quotes = [
+      { text: "Tương lai thuộc về những người tin vào vẻ đẹp của ước mơ.", author: "Eleanor Roosevelt", sub: "The future belongs to those who believe in the beauty of their dreams" },
+      { text: "Thành công không phải là chìa khóa của hạnh phúc. Hạnh phúc mới là chìa khóa của thành công.", author: "Albert Schweitzer", sub: "Success is not the key to happiness. Happiness is the key to success." },
+      { text: "Điều kỳ diệu chỉ xảy ra khi bạn nỗ lực không ngừng nghỉ.", author: "Khuyết danh", sub: "Miracles happen to those who never give up." }
+    ];
+
+    const advices = [
+      "Nghỉ ngơi đúng lúc cũng là một phần của việc học hiệu quả.",
+      "Uống đủ nước và ngủ đủ 7-8 tiếng mỗi ngày để não bộ tập trung nhất.",
+      "Luyện đề thường xuyên nhưng đừng quên tổng ôn lại các kiến thức cơ bản."
+    ];
+
+    // Năm thi & Môn thi
+    let selectedYear = 2027;
+    let selectedExamIndex = 0;
+
+    const examData = {
+      2025: [
+        { name: "Ngữ văn", date: "2025-06-26T07:35:00", time: "26/6/2025 | 07:35 | 120 phút", icon: "📝" },
+        { name: "Toán", date: "2025-06-26T14:20:00", time: "26/6/2025 | 14:20 | 90 phút", icon: "🔢" },
+        { name: "Bài thi Tự chọn 1", date: "2025-06-27T07:30:00", time: "27/6/2025 | 07:30 | 50 phút", icon: "1️⃣" },
+        { name: "Bài thi Tự chọn 2", date: "2025-06-27T08:35:00", time: "27/6/2025 | 08:35 | 50 phút", icon: "2️⃣" }
+      ],
+      2026: [
+        { name: "Ngữ văn", date: "2026-06-12T07:30:00", time: "12/6/2026 | 07:30 | 120 phút", icon: "📝" },
+        { name: "Toán", date: "2026-06-12T14:20:00", time: "12/6/2026 | 14:20 | 90 phút", icon: "🔢" },
+        { name: "Bài thi Tự chọn 1", date: "2026-06-13T07:30:00", time: "13/6/2026 | 07:30 | 50 phút", icon: "1️⃣" },
+        { name: "Bài thi Tự chọn 2", date: "2026-06-13T08:35:00", time: "13/6/2026 | 08:35 | 50 phút", icon: "2️⃣" }
+      ],
+      2027: [
+        { name: "Ngữ văn", date: "2027-06-11T07:30:00", time: "11/6/2027 | 07:30 | 120 phút", icon: "📝" },
+        { name: "Toán", date: "2027-06-11T14:20:00", time: "11/6/2027 | 14:20 | 90 phút", icon: "🔢" },
+        { name: "Bài thi Tự chọn môn thứ nhất", date: "2027-06-12T07:30:00", time: "12/6/2027 | 07:30 | 50 phút", icon: "1️⃣" },
+        { name: "Bài thi Tự chọn môn thứ hai", date: "2027-06-12T08:35:00", time: "12/6/2027 | 08:35 | 50 phút", icon: "2️⃣" }
+      ],
+      2028: [
+        { name: "Ngữ văn", date: "2028-06-10T07:30:00", time: "10/6/2028 | 07:30 | 120 phút", icon: "📝" },
+        { name: "Toán", date: "2028-06-10T14:20:00", time: "10/6/2028 | 14:20 | 90 phút", icon: "🔢" },
+        { name: "Bài thi Tự chọn 1", date: "2028-06-11T07:30:00", time: "11/6/2028 | 07:30 | 50 phút", icon: "1️⃣" },
+        { name: "Bài thi Tự chọn 2", date: "2028-06-11T08:35:00", time: "11/6/2028 | 08:35 | 50 phút", icon: "2️⃣" }
+      ]
+    };
+
+    function renderExamList() {
+      const container = document.getElementById('examContainer');
+      const list = examData[selectedYear];
+      document.getElementById('siteTitle').innerText = `Đếm Ngược Ngày Thi Tốt Nghiệp THPT ${selectedYear}`;
+      document.getElementById('scheduleHeader').innerText = `Lịch thi tổng quan ${selectedYear} (Dự kiến)`;
+
+      container.innerHTML = list.map((item, idx) => `
+        <div onclick="selectExam(${idx})" class="exam-card-item themed-card ${idx === selectedExamIndex ? 'themed-card-active' : ''} rounded-2xl p-3.5 flex items-center justify-between cursor-pointer hover:opacity-95">
+          <div class="flex items-center gap-3">
+            <div class="text-xl">${item.icon}</div>
+            <div>
+              <h5 class="font-bold text-sm">${item.name}</h5>
+              <p class="text-[11px] text-muted-themed font-medium">${item.time}</p>
+            </div>
+          </div>
+          <span class="${idx === selectedExamIndex ? '' : 'hidden'} themed-badge text-[10px] font-bold px-2 py-1 rounded-full">Đang đếm ngược</span>
+        </div>
+      `).join('');
+    }
+
+    function selectExam(index) {
+      selectedExamIndex = index;
+      renderExamList();
+      const current = examData[selectedYear][index];
+      document.getElementById('targetExamTitle').innerText = current.name;
+      document.getElementById('targetExamBadge').innerText = current.time.split('|').slice(0, 2).join('–');
+      document.getElementById('targetExamSub').innerText = `Thời gian còn lại đến môn thi ${current.name}`;
+      updateCountdown();
+    }
+
+    function changeYear(year) {
+      selectedYear = year;
+      selectedExamIndex = 0;
+      toggleModal('yearModal');
+      renderExamList();
+      selectExam(0);
+    }
 
     function updateCountdown() {
+      const current = examData[selectedYear][selectedExamIndex];
+      const target = new Date(current.date).getTime();
+      const start = new Date(`${selectedYear - 1}-09-05T00:00:00`).getTime();
       const now = new Date().getTime();
-      const difference = targetDate - now;
+      const diff = target - now;
 
-      if (difference <= 0) {
+      if (diff <= 0) {
         document.getElementById('days').innerText = "0";
         document.getElementById('hours').innerText = "0";
         document.getElementById('minutes').innerText = "0";
@@ -223,34 +458,82 @@
         return;
       }
 
-      // Tính Ngày, Giờ, Phút, Giây
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
-
-      // Tính tiến trình %
       let progress = 0;
-      if (now > startDate) {
-        const totalDuration = targetDate - startDate;
-        const passedDuration = now - startDate;
-        progress = Math.min(100, Math.max(0, (passedDuration / totalDuration) * 100));
+      if (now > start) {
+        progress = Math.min(100, Math.max(0, ((now - start) / (target - start)) * 100));
       }
-      const progressFormatted = progress.toFixed(1);
-      document.getElementById('progress-percent').innerText = `${progressFormatted}%`;
-      document.getElementById('progress-bar').style.width = `${progressFormatted}%`;
-      document.getElementById('progress-desc').innerText = 
-        `${progressFormatted}% thời gian đã qua từ đầu năm học (05/09/2026) đến kỳ thi THPT 2027`;
+      const pStr = progress.toFixed(1);
+      document.getElementById('progress-percent').innerText = `${pStr}%`;
+      document.getElementById('progress-bar').style.width = `${pStr}%`;
+      document.getElementById('progress-desc').innerText = `${pStr}% thời gian đã qua từ đầu năm học (05/09/${selectedYear - 1}) đến kỳ thi THPT ${selectedYear}`;
     }
 
-    // Chạy ngay lập tức và lặp lại mỗi giây
-    updateCountdown();
+    // Modal toggles
+    function toggleModal(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+
+    function switchTab(tabId) {
+      document.getElementById('tab-themes').classList.add('hidden');
+      document.getElementById('tab-wallpaper').classList.add('hidden');
+      document.getElementById('btn-tab-themes').className = 'px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white';
+      document.getElementById('btn-tab-wallpaper').className = 'px-4 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white';
+
+      document.getElementById(tabId).classList.remove('hidden');
+      if (tabId === 'tab-themes') {
+        document.getElementById('btn-tab-themes').className = 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white';
+      } else {
+        document.getElementById('btn-tab-wallpaper').className = 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-white';
+      }
+    }
+
+    function selectTheme(theme) {
+      document.body.className = `${theme} flex flex-col justify-between min-h-screen`;
+      localStorage.setItem('site_theme', theme);
+      lucide.createIcons();
+    }
+
+    function applyCustomBg() {
+      const url = document.getElementById('customBgInput').value;
+      if (url) {
+        document.body.style.backgroundImage = `url('${url}')`;
+        localStorage.setItem('site_bg', url);
+        toggleModal('themeModal');
+      }
+    }
+
+    function clearCustomBg() {
+      document.body.style.backgroundImage = 'none';
+      document.getElementById('customBgInput').value = '';
+      localStorage.removeItem('site_bg');
+    }
+
+    function shareLink() {
+      navigator.clipboard.writeText(window.location.href);
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+
+    // Khởi tạo
+    renderExamList();
+    selectExam(0);
     setInterval(updateCountdown, 1000);
+
+    // Load theme & hình nền đã lưu
+    const savedTheme = localStorage.getItem('site_theme') || 'theme-dem-tinh-lang';
+    selectTheme(savedTheme);
+    const savedBg = localStorage.getItem('site_bg');
+    if (savedBg) {
+      document.body.style.backgroundImage = `url('${savedBg}')`;
+      document.getElementById('customBgInput').value = savedBg;
+    }
   </script>
 </body>
 </html>
